@@ -6,36 +6,42 @@
 - `npm run dev`: dev server at http://localhost:5173
 - `npm run build`: typecheck and production build to `dist/`
 - `npm run typecheck`
+- `npm run check-level`: simulates the fox through Bramble Hollow with plain movement, then with dash, then with the full kit, and reports how far each gets. Run after editing the level (takes about 3 minutes; `npm run check-level -- plain` for one kit).
 
 ## Layout
 - `assets/`: all art. Vite serves it as the web root (`publicDir`), so paths in `assets/assets.json` load unchanged.
 - `assets/assets.json`: asset manifest (images, tileset, decor atlas, animal spritesheets and animations). Always load assets from it and never hardcode frame sizes.
 - `src/assets.ts`: typed view of the manifest.
 - `src/config.ts`: tunable constants. Native resolution is 320x192, scaled up with `pixelArt: true`.
-- `src/scenes/`: `BootScene` (loading, creating animations), `GameScene` (level, input, camera).
-- `src/entities/Player.ts`: the fox's movement and animation state.
+- `src/scenes/`: `BootScene` (loading, creating animations, decor frames), `GameScene` (builds the level, input, camera, hazards, timer/splits HUD), `placeholderArt.ts` (hedge, bramble, thorn, den and flower textures drawn in code until real art exists).
+- `src/entities/movement.ts`: acceleration-based movement, dash and Scurry as a pure step function (no Phaser), shared by the game and the level checker.
+- `src/entities/Player.ts`: the fox sprite; feeds `movement.ts` and picks animations.
+- `src/levels/level.ts`: ASCII level format and legend. `src/levels/brambleHollow.ts`: the fox stage, five 80x12 zones.
 - `docs/design/`: game design docs (see Game design below).
 
 ## Controls
-A/D move, W or Space jump, hold Shift to run.
+A/D move (hold a direction to build into a sprint, or double-tap it to sprint at once), W or Space jump, J dash, K Scurry (aim with WASD), R restart.
 
 ## Notes
 - BG1 (sky) doesn't tile seamlessly, so it stays static. BG2 and BG3 use the manifest's scroll factors.
 - The player is the fox. Animals have separate left and right sheets, so turn the sprite by switching sheets, not by `flipX`.
 - `fox_run_left.png` and `fox_run_right.png` are swapped in the art pack. `ANIMATION_KEY_FIXES` in `src/config.ts` corrects this; check new animals' sheets the same way.
-- Jumps come from key `down` events, not `isDown`/`JustDown`, so taps that start and end within one frame aren't lost.
+- Jump, dash and Scurry presses come from key `down` events, not `isDown`/`JustDown`, so taps that start and end within one frame aren't lost.
+- Brambles (`~`) and thorns (`X`) are overlap-only: `GameScene.hazardsTouching()` reads the level grid under the player's body. Hedges (`H`, `K`) collide like ground.
+- Thorns restart the whole run (no checkpoints). Brambles halve max speed; dash ignores them.
 - The camera scrolls after `update()`, so parallax updates on the camera's `FOLLOW_UPDATE` event.
 
 ## Build plan
 1. Parallax background layers (done)
 2. Flat ground from the tileset: grass tile 1, dirt tile 9, at y=144 (done)
 3. Fox with idle/walk/run animations, movement, jump and camera follow (done)
-4. Next: shape the level like the mockup (raised ledges, a pit, trees, bushes, stones, stone ruins)
-5. Later, from the design pillars below: fox dash + cooldown, Scurry air dodge, momentum-based movement, then the Bramble Hollow stage
+4. Fox kit: acceleration movement (traction, air acceleration, max air speed), dash + cooldown, Scurry (done, placeholder numbers)
+5. Bramble Hollow greybox: all five zones, placeholder hazard art, timer, splits, best time (done)
+6. Next: playtest and tune the numbers and gap sizes, then real art (hedges, hazards, fox jump/dash/Scurry animations)
 
 ## Game design (target, mostly not implemented yet)
 
-The prototype is currently a plain walk/run/jump fox. Everything in this section is where the game is heading. Don't assume it exists in code.
+The fox kit and a greybox of Bramble Hollow exist in code; the numbers are placeholders. Other animals, real art and leaderboards don't exist yet.
 
 ### Pillars
 1. **Same inputs, different physics.** Inspired by Smash Bros character differentiation. Animals share the same buttons but differ in stats: walk speed, dash speed, ground traction, air acceleration, max air speed, fall speed, jump height.
@@ -57,7 +63,7 @@ Bunny, Fox, Boar, Chicken/Pheasant, Deer. In the asset pack these are `hare`, `f
 Fox stage is **Bramble Hollow**: @docs/design/fox-bramble-hollow.md
 
 ### Implementation notes for the design target
-- `Player.update()` currently sets `velocityX` directly every frame (`dir * speed`), so there is no traction or air acceleration. The fox's identity needs acceleration-based movement (ground traction, air acceleration, max air speed), so expect to rework this.
+- Movement is acceleration-based in `src/entities/movement.ts`. Scurry numbers live in `SCURRY` in `src/config.ts` and are shared by every animal by design; never make them per-animal.
 - `PLAYER` in `src/config.ts` is a single fox-only object. When a second animal is added, make movement stats a per-animal record keyed by animal so tuning one animal never touches shared logic.
 - There is no jump, dash, or Scurry animation in the pack. Jumping reuses run frame 3 (`PLAYER.airFrame`). Dash and Scurry need placeholder or custom art.
 - Ask before inventing numbers for anything the design docs mark TBD.

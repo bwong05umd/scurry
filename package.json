@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "check-level": "vite build -c scripts/vite.check-level.config.ts && node node_modules/.check-level/check-level.js"
   },
   "dependencies": {
     "phaser": "^3.90.0"

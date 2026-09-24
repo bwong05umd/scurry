@@ -1,13 +1,7 @@
 import Phaser from 'phaser';
 import { type Direction, manifest } from '../assets';
 import { ANIMATION_KEY_FIXES, PLAYER, PLAYER_ANIMAL } from '../config';
-
-export interface PlayerInput {
-  left: boolean;
-  right: boolean;
-  run: boolean;
-  jump: boolean; // pressed this frame
-}
+import { createMoveState, type MoveInput, stepMovement } from './movement';
 
 const character = manifest.characters[PLAYER_ANIMAL];
 
@@ -16,9 +10,14 @@ function animKey(action: string, facing: Direction) {
   return ANIMATION_KEY_FIXES[key] ?? key;
 }
 
+// Placeholder effects until there's dash and Scurry art: fading afterimages.
+const DASH_TRAIL_TINT = 0xffb060;
+const SCURRY_TRAIL_TINT = 0x9fe070;
+
 export class Player extends Phaser.Physics.Arcade.Sprite {
   declare body: Phaser.Physics.Arcade.Body;
-  private facing: Direction = 'right';
+  readonly move = createMoveState();
+  private trailTimer = 0;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, animKey('idle', 'right'));
@@ -27,30 +26,51 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     const { width, height, offsetX, offsetY } = PLAYER.body;
     this.body.setSize(width, height).setOffset(offsetX, offsetY);
+    this.body.setMaxVelocity(1000, PLAYER.maxFallSpeed);
     this.setCollideWorldBounds(true);
-    this.play(animKey('idle', this.facing));
+    this.play(animKey('idle', 'right'));
   }
 
-  update(input: PlayerInput) {
-    const dir = (input.right ? 1 : 0) - (input.left ? 1 : 0);
+  get facing(): Direction {
+    return this.move.facing > 0 ? 'right' : 'left';
+  }
+
+  get dashing() {
+    return this.move.dashTime > 0;
+  }
+
+  update(input: MoveInput, slowed: boolean, dt: number) {
     const onGround = this.body.blocked.down;
-    const speed = input.run ? PLAYER.runSpeed : PLAYER.walkSpeed;
+    const s = this.move;
+    s.vx = this.body.velocity.x;
+    s.vy = this.body.velocity.y;
+    const gravity = stepMovement(s, input, { onGround, slowed }, dt);
+    this.body.setAllowGravity(gravity);
+    this.setVelocity(s.vx, s.vy);
 
-    this.setVelocityX(dir * speed);
-    if (dir !== 0) this.facing = dir > 0 ? 'right' : 'left';
+    const scurrying = s.scurryTime > 0;
+    if (this.dashing || scurrying) this.spawnTrail(scurrying ? SCURRY_TRAIL_TINT : DASH_TRAIL_TINT, dt);
 
-    if (input.jump && onGround) {
-      this.setVelocityY(PLAYER.jumpVelocity);
-    }
-
-    if (!onGround) {
-      // No jump animation in the pack: hold the stretched-out run frame while airborne.
+    if (!onGround || this.dashing) {
+      // No jump or dash animation in the pack: hold the stretched-out run frame.
       this.anims.stop();
       this.setTexture(animKey('run', this.facing), PLAYER.airFrame);
-    } else if (dir === 0) {
+    } else if (input.dir === 0 && Math.abs(s.vx) < 1) {
       this.play(animKey('idle', this.facing), true);
     } else {
-      this.play(animKey(input.run ? 'run' : 'walk', this.facing), true);
+      this.play(animKey(Math.abs(s.vx) > PLAYER.walkSpeed ? 'run' : 'walk', this.facing), true);
     }
+  }
+
+  private spawnTrail(tint: number, dt: number) {
+    this.trailTimer -= dt;
+    if (this.trailTimer > 0) return;
+    this.trailTimer = 0.03;
+    const ghost = this.scene.add
+      .image(this.x, this.y, this.texture.key, this.frame.name)
+      .setTintFill(tint)
+      .setAlpha(0.6)
+      .setDepth(this.depth - 1);
+    this.scene.tweens.add({ targets: ghost, alpha: 0, duration: 180, onComplete: () => ghost.destroy() });
   }
 }

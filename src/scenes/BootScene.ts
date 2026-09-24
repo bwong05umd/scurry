@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
-import { manifest } from '../assets';
+import { decors, manifest } from '../assets';
 import { PLAYER_ANIMAL } from '../config';
+import { createPlaceholderArt } from './placeholderArt';
 
 // Only the player's sheets are needed so far; other animals load when they're added.
 const spritesheets = manifest.spritesheets.filter((s) => s.animal === PLAYER_ANIMAL);
@@ -18,6 +19,7 @@ export class BootScene extends Phaser.Scene {
     for (const set of manifest.tilesets) {
       this.load.image(set.key, set.path);
     }
+    this.load.image(decors.key, decors.path);
     for (const sheet of spritesheets) {
       this.load.spritesheet(sheet.key, sheet.path, {
         frameWidth: sheet.frameWidth,
@@ -37,6 +39,14 @@ export class BootScene extends Phaser.Scene {
         repeat: anim.repeat,
       });
     }
+
+    // The decor sheet has an irregular layout; register its named frames from the manifest.
+    const decorTexture = this.textures.get(decors.key);
+    for (const [name, f] of Object.entries(decors.frames)) {
+      decorTexture.add(name, 0, f.x, f.y, f.w, f.h);
+    }
+
+    createPlaceholderArt(this);
     this.scene.start('GameScene');
   }
 }

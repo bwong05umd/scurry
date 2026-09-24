@@ -21,6 +21,19 @@ export interface TilesetAsset {
   spacing: number;
 }
 
+export interface AtlasFrame {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+}
+
+export interface AtlasAsset {
+  key: string;
+  path: string;
+  frames: Record<string, AtlasFrame>;
+}
+
 export interface SpritesheetAsset {
   key: string;
   path: string;
@@ -53,6 +66,7 @@ export interface CharacterAsset {
 export interface Manifest {
   images: ImageAsset[];
   tilesets: TilesetAsset[];
+  atlases: AtlasAsset[];
   spritesheets: SpritesheetAsset[];
   animations: AnimationAsset[];
   characters: Record<string, CharacterAsset>;
@@ -61,6 +75,7 @@ export interface Manifest {
 export const manifest = manifestJson as unknown as Manifest;
 
 export const tileset = manifest.tilesets.find((t) => t.key === 'tileset')!;
+export const decors = manifest.atlases.find((a) => a.key === 'decors')!;
 
 // Background layers, far to near.
 export const backgroundLayers = [...manifest.images].sort((a, b) => a.layer - b.layer);
