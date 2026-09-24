@@ -1,0 +1,1790 @@
+{
+  "meta": {
+    "description": "Asset index for Phaser. All paths are relative to basePath (this file's folder).",
+    "basePath": "assets/",
+    "license": "animals/LICENSE.txt (CraftPix, https://craftpix.net/file-licenses/)",
+    "excluded": [
+      "animals/*/source/ (psd/aseprite, not loadable)",
+      "stage/Mockup2x.png, stage/ExampleTiles.png (reference images)"
+    ],
+    "notes": [
+      "Load spritesheets with this.load.spritesheet(key, basePath+path, { frameWidth, frameHeight }).",
+      "Every spritesheet has a pathWithShadow alternative (same frame size) baked with a drop shadow.",
+      "Animation frameRate values are suggested defaults, not from the source files.",
+      "Directions: 'left'/'right' are side views, 'front' faces the camera."
+    ]
+  },
+  "images": [
+    {
+      "key": "bg1",
+      "path": "stage/BG1.png",
+      "width": 320,
+      "height": 192,
+      "layer": 0,
+      "role": "background-far",
+      "opaque": true,
+      "suggestedScrollFactor": 0.1
+    },
+    {
+      "key": "bg2",
+      "path": "stage/BG2.png",
+      "width": 320,
+      "height": 192,
+      "layer": 1,
+      "role": "background-mid",
+      "opaque": false,
+      "suggestedScrollFactor": 0.3
+    },
+    {
+      "key": "bg3",
+      "path": "stage/BG3.png",
+      "width": 320,
+      "height": 192,
+      "layer": 2,
+      "role": "background-near",
+      "opaque": false,
+      "suggestedScrollFactor": 0.6
+    }
+  ],
+  "tilesets": [
+    {
+      "key": "tileset",
+      "path": "stage/Tileset.png",
+      "width": 128,
+      "height": 96,
+      "tileWidth": 16,
+      "tileHeight": 16,
+      "margin": 0,
+      "spacing": 0,
+      "columns": 8,
+      "rows": 6,
+      "tileCount": 48,
+      "emptyTiles": [
+        15,
+        22,
+        23,
+        45,
+        46,
+        47
+      ],
+      "notes": "Tile index = row*8 + col. Top rows are grass-topped dirt; bottom rows are dark soil and blue stone brick."
+    }
+  ],
+  "atlases": [
+    {
+      "key": "decors",
+      "path": "stage/Decors.png",
+      "width": 224,
+      "height": 112,
+      "notes": "Irregular layout. Load as an image, then register frames with texture.add(name, 0, x, y, w, h).",
+      "frames": {
+        "tree": {
+          "x": 17,
+          "y": 12,
+          "w": 73,
+          "h": 100
+        },
+        "bush": {
+          "x": 114,
+          "y": 96,
+          "w": 35,
+          "h": 16
+        },
+        "stone": {
+          "x": 177,
+          "y": 92,
+          "w": 27,
+          "h": 20
+        }
+      }
+    }
+  ],
+  "spritesheets": [
+    {
+      "key": "black_grouse_death_left",
+      "path": "animals/black_grouse/side/black_grouse_death_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "death",
+      "direction": "left",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_death_left.png"
+    },
+    {
+      "key": "black_grouse_death_right",
+      "path": "animals/black_grouse/side/black_grouse_death_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "death",
+      "direction": "right",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_death_right.png"
+    },
+    {
+      "key": "black_grouse_flight_left",
+      "path": "animals/black_grouse/side/black_grouse_flight_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "flight",
+      "direction": "left",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_flight_left.png"
+    },
+    {
+      "key": "black_grouse_flight_right",
+      "path": "animals/black_grouse/side/black_grouse_flight_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "flight",
+      "direction": "right",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_flight_right.png"
+    },
+    {
+      "key": "black_grouse_hurt_left",
+      "path": "animals/black_grouse/side/black_grouse_hurt_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "black_grouse",
+      "action": "hurt",
+      "direction": "left",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_hurt_left.png"
+    },
+    {
+      "key": "black_grouse_hurt_right",
+      "path": "animals/black_grouse/side/black_grouse_hurt_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "black_grouse",
+      "action": "hurt",
+      "direction": "right",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_hurt_right.png"
+    },
+    {
+      "key": "black_grouse_idle_left",
+      "path": "animals/black_grouse/side/black_grouse_idle_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "black_grouse",
+      "action": "idle",
+      "direction": "left",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_idle_left.png"
+    },
+    {
+      "key": "black_grouse_idle_right",
+      "path": "animals/black_grouse/side/black_grouse_idle_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "black_grouse",
+      "action": "idle",
+      "direction": "right",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_idle_right.png"
+    },
+    {
+      "key": "black_grouse_walk_left",
+      "path": "animals/black_grouse/side/black_grouse_walk_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "walk",
+      "direction": "left",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_walk_left.png"
+    },
+    {
+      "key": "black_grouse_walk_right",
+      "path": "animals/black_grouse/side/black_grouse_walk_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "walk",
+      "direction": "right",
+      "pathWithShadow": "animals/black_grouse/with_shadow/side/black_grouse_walk_right.png"
+    },
+    {
+      "key": "black_grouse_death_front",
+      "path": "animals/black_grouse/front/black_grouse_death_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "death",
+      "direction": "front",
+      "pathWithShadow": "animals/black_grouse/with_shadow/front/black_grouse_death_front.png"
+    },
+    {
+      "key": "black_grouse_flight_front",
+      "path": "animals/black_grouse/front/black_grouse_flight_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "flight",
+      "direction": "front",
+      "pathWithShadow": "animals/black_grouse/with_shadow/front/black_grouse_flight_front.png"
+    },
+    {
+      "key": "black_grouse_hurt_front",
+      "path": "animals/black_grouse/front/black_grouse_hurt_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "black_grouse",
+      "action": "hurt",
+      "direction": "front",
+      "pathWithShadow": "animals/black_grouse/with_shadow/front/black_grouse_hurt_front.png"
+    },
+    {
+      "key": "black_grouse_idle_front",
+      "path": "animals/black_grouse/front/black_grouse_idle_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "black_grouse",
+      "action": "idle",
+      "direction": "front",
+      "pathWithShadow": "animals/black_grouse/with_shadow/front/black_grouse_idle_front.png"
+    },
+    {
+      "key": "black_grouse_walk_front",
+      "path": "animals/black_grouse/front/black_grouse_walk_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "black_grouse",
+      "action": "walk",
+      "direction": "front",
+      "pathWithShadow": "animals/black_grouse/with_shadow/front/black_grouse_walk_front.png"
+    },
+    {
+      "key": "boar_attack_left",
+      "path": "animals/boar/side/boar_attack_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "boar",
+      "action": "attack",
+      "direction": "left",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_attack_left.png"
+    },
+    {
+      "key": "boar_attack_right",
+      "path": "animals/boar/side/boar_attack_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "boar",
+      "action": "attack",
+      "direction": "right",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_attack_right.png"
+    },
+    {
+      "key": "boar_death_left",
+      "path": "animals/boar/side/boar_death_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "boar",
+      "action": "death",
+      "direction": "left",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_death_left.png"
+    },
+    {
+      "key": "boar_death_right",
+      "path": "animals/boar/side/boar_death_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "boar",
+      "action": "death",
+      "direction": "right",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_death_right.png"
+    },
+    {
+      "key": "boar_hurt_left",
+      "path": "animals/boar/side/boar_hurt_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "boar",
+      "action": "hurt",
+      "direction": "left",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_hurt_left.png"
+    },
+    {
+      "key": "boar_hurt_right",
+      "path": "animals/boar/side/boar_hurt_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "boar",
+      "action": "hurt",
+      "direction": "right",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_hurt_right.png"
+    },
+    {
+      "key": "boar_idle_left",
+      "path": "animals/boar/side/boar_idle_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "boar",
+      "action": "idle",
+      "direction": "left",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_idle_left.png"
+    },
+    {
+      "key": "boar_idle_right",
+      "path": "animals/boar/side/boar_idle_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "boar",
+      "action": "idle",
+      "direction": "right",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_idle_right.png"
+    },
+    {
+      "key": "boar_run_left",
+      "path": "animals/boar/side/boar_run_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "boar",
+      "action": "run",
+      "direction": "left",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_run_left.png"
+    },
+    {
+      "key": "boar_run_right",
+      "path": "animals/boar/side/boar_run_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "boar",
+      "action": "run",
+      "direction": "right",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_run_right.png"
+    },
+    {
+      "key": "boar_walk_left",
+      "path": "animals/boar/side/boar_walk_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "boar",
+      "action": "walk",
+      "direction": "left",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_walk_left.png"
+    },
+    {
+      "key": "boar_walk_right",
+      "path": "animals/boar/side/boar_walk_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "boar",
+      "action": "walk",
+      "direction": "right",
+      "pathWithShadow": "animals/boar/with_shadow/side/boar_walk_right.png"
+    },
+    {
+      "key": "boar_attack_front",
+      "path": "animals/boar/front/boar_attack_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "boar",
+      "action": "attack",
+      "direction": "front",
+      "pathWithShadow": "animals/boar/with_shadow/front/boar_attack_front.png"
+    },
+    {
+      "key": "boar_death_front",
+      "path": "animals/boar/front/boar_death_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "boar",
+      "action": "death",
+      "direction": "front",
+      "pathWithShadow": "animals/boar/with_shadow/front/boar_death_front.png"
+    },
+    {
+      "key": "boar_hurt_front",
+      "path": "animals/boar/front/boar_hurt_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "boar",
+      "action": "hurt",
+      "direction": "front",
+      "pathWithShadow": "animals/boar/with_shadow/front/boar_hurt_front.png"
+    },
+    {
+      "key": "boar_idle_front",
+      "path": "animals/boar/front/boar_idle_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "boar",
+      "action": "idle",
+      "direction": "front",
+      "pathWithShadow": "animals/boar/with_shadow/front/boar_idle_front.png"
+    },
+    {
+      "key": "boar_run_front",
+      "path": "animals/boar/front/boar_run_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "boar",
+      "action": "run",
+      "direction": "front",
+      "pathWithShadow": "animals/boar/with_shadow/front/boar_run_front.png"
+    },
+    {
+      "key": "boar_walk_front",
+      "path": "animals/boar/front/boar_walk_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "boar",
+      "action": "walk",
+      "direction": "front",
+      "pathWithShadow": "animals/boar/with_shadow/front/boar_walk_front.png"
+    },
+    {
+      "key": "deer_death_left",
+      "path": "animals/deer/side/deer_death_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 7,
+      "animal": "deer",
+      "action": "death",
+      "direction": "left",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_death_left.png"
+    },
+    {
+      "key": "deer_death_right",
+      "path": "animals/deer/side/deer_death_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 7,
+      "animal": "deer",
+      "action": "death",
+      "direction": "right",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_death_right.png"
+    },
+    {
+      "key": "deer_hurt_left",
+      "path": "animals/deer/side/deer_hurt_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "deer",
+      "action": "hurt",
+      "direction": "left",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_hurt_left.png"
+    },
+    {
+      "key": "deer_hurt_right",
+      "path": "animals/deer/side/deer_hurt_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "deer",
+      "action": "hurt",
+      "direction": "right",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_hurt_right.png"
+    },
+    {
+      "key": "deer_idle_left",
+      "path": "animals/deer/side/deer_idle_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "deer",
+      "action": "idle",
+      "direction": "left",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_idle_left.png"
+    },
+    {
+      "key": "deer_idle_right",
+      "path": "animals/deer/side/deer_idle_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "deer",
+      "action": "idle",
+      "direction": "right",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_idle_right.png"
+    },
+    {
+      "key": "deer_run_left",
+      "path": "animals/deer/side/deer_run_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "deer",
+      "action": "run",
+      "direction": "left",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_run_left.png"
+    },
+    {
+      "key": "deer_run_right",
+      "path": "animals/deer/side/deer_run_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "deer",
+      "action": "run",
+      "direction": "right",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_run_right.png"
+    },
+    {
+      "key": "deer_walk_left",
+      "path": "animals/deer/side/deer_walk_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "deer",
+      "action": "walk",
+      "direction": "left",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_walk_left.png"
+    },
+    {
+      "key": "deer_walk_right",
+      "path": "animals/deer/side/deer_walk_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "deer",
+      "action": "walk",
+      "direction": "right",
+      "pathWithShadow": "animals/deer/with_shadow/side/deer_walk_right.png"
+    },
+    {
+      "key": "deer_death_front",
+      "path": "animals/deer/front/deer_death_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 7,
+      "animal": "deer",
+      "action": "death",
+      "direction": "front",
+      "pathWithShadow": "animals/deer/with_shadow/front/deer_death_front.png"
+    },
+    {
+      "key": "deer_hurt_front",
+      "path": "animals/deer/front/deer_hurt_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "deer",
+      "action": "hurt",
+      "direction": "front",
+      "pathWithShadow": "animals/deer/with_shadow/front/deer_hurt_front.png"
+    },
+    {
+      "key": "deer_idle_front",
+      "path": "animals/deer/front/deer_idle_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "deer",
+      "action": "idle",
+      "direction": "front",
+      "pathWithShadow": "animals/deer/with_shadow/front/deer_idle_front.png"
+    },
+    {
+      "key": "deer_run_front",
+      "path": "animals/deer/front/deer_run_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "deer",
+      "action": "run",
+      "direction": "front",
+      "pathWithShadow": "animals/deer/with_shadow/front/deer_run_front.png"
+    },
+    {
+      "key": "deer_walk_front",
+      "path": "animals/deer/front/deer_walk_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "deer",
+      "action": "walk",
+      "direction": "front",
+      "pathWithShadow": "animals/deer/with_shadow/front/deer_walk_front.png"
+    },
+    {
+      "key": "fox_death_left",
+      "path": "animals/fox/side/fox_death_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "death",
+      "direction": "left",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_death_left.png"
+    },
+    {
+      "key": "fox_death_right",
+      "path": "animals/fox/side/fox_death_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "death",
+      "direction": "right",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_death_right.png"
+    },
+    {
+      "key": "fox_hurt_left",
+      "path": "animals/fox/side/fox_hurt_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "fox",
+      "action": "hurt",
+      "direction": "left",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_hurt_left.png"
+    },
+    {
+      "key": "fox_hurt_right",
+      "path": "animals/fox/side/fox_hurt_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "fox",
+      "action": "hurt",
+      "direction": "right",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_hurt_right.png"
+    },
+    {
+      "key": "fox_idle_left",
+      "path": "animals/fox/side/fox_idle_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "fox",
+      "action": "idle",
+      "direction": "left",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_idle_left.png"
+    },
+    {
+      "key": "fox_idle_right",
+      "path": "animals/fox/side/fox_idle_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "fox",
+      "action": "idle",
+      "direction": "right",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_idle_right.png"
+    },
+    {
+      "key": "fox_run_left",
+      "path": "animals/fox/side/fox_run_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "run",
+      "direction": "left",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_run_left.png"
+    },
+    {
+      "key": "fox_run_right",
+      "path": "animals/fox/side/fox_run_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "run",
+      "direction": "right",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_run_right.png"
+    },
+    {
+      "key": "fox_walk_left",
+      "path": "animals/fox/side/fox_walk_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "walk",
+      "direction": "left",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_walk_left.png"
+    },
+    {
+      "key": "fox_walk_right",
+      "path": "animals/fox/side/fox_walk_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "walk",
+      "direction": "right",
+      "pathWithShadow": "animals/fox/with_shadow/side/fox_walk_right.png"
+    },
+    {
+      "key": "fox_death_front",
+      "path": "animals/fox/front/fox_death_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "death",
+      "direction": "front",
+      "pathWithShadow": "animals/fox/with_shadow/front/fox_death_front.png"
+    },
+    {
+      "key": "fox_hurt_front",
+      "path": "animals/fox/front/fox_hurt_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "fox",
+      "action": "hurt",
+      "direction": "front",
+      "pathWithShadow": "animals/fox/with_shadow/front/fox_hurt_front.png"
+    },
+    {
+      "key": "fox_idle_front",
+      "path": "animals/fox/front/fox_idle_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "fox",
+      "action": "idle",
+      "direction": "front",
+      "pathWithShadow": "animals/fox/with_shadow/front/fox_idle_front.png"
+    },
+    {
+      "key": "fox_run_front",
+      "path": "animals/fox/front/fox_run_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "run",
+      "direction": "front",
+      "pathWithShadow": "animals/fox/with_shadow/front/fox_run_front.png"
+    },
+    {
+      "key": "fox_walk_front",
+      "path": "animals/fox/front/fox_walk_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "fox",
+      "action": "walk",
+      "direction": "front",
+      "pathWithShadow": "animals/fox/with_shadow/front/fox_walk_front.png"
+    },
+    {
+      "key": "hare_death_left",
+      "path": "animals/hare/side/hare_death_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "hare",
+      "action": "death",
+      "direction": "left",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_death_left.png"
+    },
+    {
+      "key": "hare_death_right",
+      "path": "animals/hare/side/hare_death_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "hare",
+      "action": "death",
+      "direction": "right",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_death_right.png"
+    },
+    {
+      "key": "hare_hurt_left",
+      "path": "animals/hare/side/hare_hurt_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "hare",
+      "action": "hurt",
+      "direction": "left",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_hurt_left.png"
+    },
+    {
+      "key": "hare_hurt_right",
+      "path": "animals/hare/side/hare_hurt_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "hare",
+      "action": "hurt",
+      "direction": "right",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_hurt_right.png"
+    },
+    {
+      "key": "hare_idle_left",
+      "path": "animals/hare/side/hare_idle_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "hare",
+      "action": "idle",
+      "direction": "left",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_idle_left.png"
+    },
+    {
+      "key": "hare_idle_right",
+      "path": "animals/hare/side/hare_idle_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "hare",
+      "action": "idle",
+      "direction": "right",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_idle_right.png"
+    },
+    {
+      "key": "hare_run_left",
+      "path": "animals/hare/side/hare_run_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "hare",
+      "action": "run",
+      "direction": "left",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_run_left.png"
+    },
+    {
+      "key": "hare_run_right",
+      "path": "animals/hare/side/hare_run_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "hare",
+      "action": "run",
+      "direction": "right",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_run_right.png"
+    },
+    {
+      "key": "hare_walk_left",
+      "path": "animals/hare/side/hare_walk_left.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "hare",
+      "action": "walk",
+      "direction": "left",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_walk_left.png"
+    },
+    {
+      "key": "hare_walk_right",
+      "path": "animals/hare/side/hare_walk_right.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "hare",
+      "action": "walk",
+      "direction": "right",
+      "pathWithShadow": "animals/hare/with_shadow/side/hare_walk_right.png"
+    },
+    {
+      "key": "hare_death_front",
+      "path": "animals/hare/front/hare_death_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "hare",
+      "action": "death",
+      "direction": "front",
+      "pathWithShadow": "animals/hare/with_shadow/front/hare_death_front.png"
+    },
+    {
+      "key": "hare_hurt_front",
+      "path": "animals/hare/front/hare_hurt_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "hare",
+      "action": "hurt",
+      "direction": "front",
+      "pathWithShadow": "animals/hare/with_shadow/front/hare_hurt_front.png"
+    },
+    {
+      "key": "hare_idle_front",
+      "path": "animals/hare/front/hare_idle_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "animal": "hare",
+      "action": "idle",
+      "direction": "front",
+      "pathWithShadow": "animals/hare/with_shadow/front/hare_idle_front.png"
+    },
+    {
+      "key": "hare_run_front",
+      "path": "animals/hare/front/hare_run_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 6,
+      "animal": "hare",
+      "action": "run",
+      "direction": "front",
+      "pathWithShadow": "animals/hare/with_shadow/front/hare_run_front.png"
+    },
+    {
+      "key": "hare_walk_front",
+      "path": "animals/hare/front/hare_walk_front.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 5,
+      "animal": "hare",
+      "action": "walk",
+      "direction": "front",
+      "pathWithShadow": "animals/hare/with_shadow/front/hare_walk_front.png"
+    }
+  ],
+  "animations": [
+    {
+      "key": "black_grouse_death_left",
+      "spritesheet": "black_grouse_death_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "black_grouse_death_right",
+      "spritesheet": "black_grouse_death_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "black_grouse_flight_left",
+      "spritesheet": "black_grouse_flight_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 10,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_flight_right",
+      "spritesheet": "black_grouse_flight_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 10,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_hurt_left",
+      "spritesheet": "black_grouse_hurt_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "black_grouse_hurt_right",
+      "spritesheet": "black_grouse_hurt_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "black_grouse_idle_left",
+      "spritesheet": "black_grouse_idle_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_idle_right",
+      "spritesheet": "black_grouse_idle_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_walk_left",
+      "spritesheet": "black_grouse_walk_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_walk_right",
+      "spritesheet": "black_grouse_walk_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_death_front",
+      "spritesheet": "black_grouse_death_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "black_grouse_flight_front",
+      "spritesheet": "black_grouse_flight_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 10,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_hurt_front",
+      "spritesheet": "black_grouse_hurt_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "black_grouse_idle_front",
+      "spritesheet": "black_grouse_idle_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "black_grouse_walk_front",
+      "spritesheet": "black_grouse_walk_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "boar_attack_left",
+      "spritesheet": "boar_attack_left",
+      "start": 0,
+      "end": 4,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "boar_attack_right",
+      "spritesheet": "boar_attack_right",
+      "start": 0,
+      "end": 4,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "boar_death_left",
+      "spritesheet": "boar_death_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "boar_death_right",
+      "spritesheet": "boar_death_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "boar_hurt_left",
+      "spritesheet": "boar_hurt_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "boar_hurt_right",
+      "spritesheet": "boar_hurt_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "boar_idle_left",
+      "spritesheet": "boar_idle_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "boar_idle_right",
+      "spritesheet": "boar_idle_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "boar_run_left",
+      "spritesheet": "boar_run_left",
+      "start": 0,
+      "end": 4,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "boar_run_right",
+      "spritesheet": "boar_run_right",
+      "start": 0,
+      "end": 4,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "boar_walk_left",
+      "spritesheet": "boar_walk_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "boar_walk_right",
+      "spritesheet": "boar_walk_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "boar_attack_front",
+      "spritesheet": "boar_attack_front",
+      "start": 0,
+      "end": 4,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "boar_death_front",
+      "spritesheet": "boar_death_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "boar_hurt_front",
+      "spritesheet": "boar_hurt_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "boar_idle_front",
+      "spritesheet": "boar_idle_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "boar_run_front",
+      "spritesheet": "boar_run_front",
+      "start": 0,
+      "end": 4,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "boar_walk_front",
+      "spritesheet": "boar_walk_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "deer_death_left",
+      "spritesheet": "deer_death_left",
+      "start": 0,
+      "end": 6,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "deer_death_right",
+      "spritesheet": "deer_death_right",
+      "start": 0,
+      "end": 6,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "deer_hurt_left",
+      "spritesheet": "deer_hurt_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "deer_hurt_right",
+      "spritesheet": "deer_hurt_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "deer_idle_left",
+      "spritesheet": "deer_idle_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "deer_idle_right",
+      "spritesheet": "deer_idle_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "deer_run_left",
+      "spritesheet": "deer_run_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "deer_run_right",
+      "spritesheet": "deer_run_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "deer_walk_left",
+      "spritesheet": "deer_walk_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "deer_walk_right",
+      "spritesheet": "deer_walk_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "deer_death_front",
+      "spritesheet": "deer_death_front",
+      "start": 0,
+      "end": 6,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "deer_hurt_front",
+      "spritesheet": "deer_hurt_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "deer_idle_front",
+      "spritesheet": "deer_idle_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "deer_run_front",
+      "spritesheet": "deer_run_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "deer_walk_front",
+      "spritesheet": "deer_walk_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "fox_death_left",
+      "spritesheet": "fox_death_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "fox_death_right",
+      "spritesheet": "fox_death_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "fox_hurt_left",
+      "spritesheet": "fox_hurt_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "fox_hurt_right",
+      "spritesheet": "fox_hurt_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "fox_idle_left",
+      "spritesheet": "fox_idle_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "fox_idle_right",
+      "spritesheet": "fox_idle_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "fox_run_left",
+      "spritesheet": "fox_run_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "fox_run_right",
+      "spritesheet": "fox_run_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "fox_walk_left",
+      "spritesheet": "fox_walk_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "fox_walk_right",
+      "spritesheet": "fox_walk_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "fox_death_front",
+      "spritesheet": "fox_death_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "fox_hurt_front",
+      "spritesheet": "fox_hurt_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "fox_idle_front",
+      "spritesheet": "fox_idle_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "fox_run_front",
+      "spritesheet": "fox_run_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "fox_walk_front",
+      "spritesheet": "fox_walk_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "hare_death_left",
+      "spritesheet": "hare_death_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "hare_death_right",
+      "spritesheet": "hare_death_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "hare_hurt_left",
+      "spritesheet": "hare_hurt_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "hare_hurt_right",
+      "spritesheet": "hare_hurt_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "hare_idle_left",
+      "spritesheet": "hare_idle_left",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "hare_idle_right",
+      "spritesheet": "hare_idle_right",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "hare_run_left",
+      "spritesheet": "hare_run_left",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "hare_run_right",
+      "spritesheet": "hare_run_right",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "hare_walk_left",
+      "spritesheet": "hare_walk_left",
+      "start": 0,
+      "end": 4,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "hare_walk_right",
+      "spritesheet": "hare_walk_right",
+      "start": 0,
+      "end": 4,
+      "frameRate": 8,
+      "repeat": -1
+    },
+    {
+      "key": "hare_death_front",
+      "spritesheet": "hare_death_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 8,
+      "repeat": 0
+    },
+    {
+      "key": "hare_hurt_front",
+      "spritesheet": "hare_hurt_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 10,
+      "repeat": 0
+    },
+    {
+      "key": "hare_idle_front",
+      "spritesheet": "hare_idle_front",
+      "start": 0,
+      "end": 3,
+      "frameRate": 6,
+      "repeat": -1
+    },
+    {
+      "key": "hare_run_front",
+      "spritesheet": "hare_run_front",
+      "start": 0,
+      "end": 5,
+      "frameRate": 12,
+      "repeat": -1
+    },
+    {
+      "key": "hare_walk_front",
+      "spritesheet": "hare_walk_front",
+      "start": 0,
+      "end": 4,
+      "frameRate": 8,
+      "repeat": -1
+    }
+  ],
+  "characters": {
+    "black_grouse": {
+      "actions": {
+        "death": {
+          "left": "black_grouse_death_left",
+          "right": "black_grouse_death_right",
+          "front": "black_grouse_death_front"
+        },
+        "flight": {
+          "left": "black_grouse_flight_left",
+          "right": "black_grouse_flight_right",
+          "front": "black_grouse_flight_front"
+        },
+        "hurt": {
+          "left": "black_grouse_hurt_left",
+          "right": "black_grouse_hurt_right",
+          "front": "black_grouse_hurt_front"
+        },
+        "idle": {
+          "left": "black_grouse_idle_left",
+          "right": "black_grouse_idle_right",
+          "front": "black_grouse_idle_front"
+        },
+        "walk": {
+          "left": "black_grouse_walk_left",
+          "right": "black_grouse_walk_right",
+          "front": "black_grouse_walk_front"
+        }
+      },
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "shadow": {
+        "key": "black_grouse_shadow",
+        "path": "animals/black_grouse/black_grouse_shadow.png",
+        "frameWidth": 32,
+        "frameHeight": 16,
+        "frameCount": 4,
+        "notes": "Grid of ellipse shadows of varying widths; not labeled per animation."
+      }
+    },
+    "boar": {
+      "actions": {
+        "attack": {
+          "left": "boar_attack_left",
+          "right": "boar_attack_right",
+          "front": "boar_attack_front"
+        },
+        "death": {
+          "left": "boar_death_left",
+          "right": "boar_death_right",
+          "front": "boar_death_front"
+        },
+        "hurt": {
+          "left": "boar_hurt_left",
+          "right": "boar_hurt_right",
+          "front": "boar_hurt_front"
+        },
+        "idle": {
+          "left": "boar_idle_left",
+          "right": "boar_idle_right",
+          "front": "boar_idle_front"
+        },
+        "run": {
+          "left": "boar_run_left",
+          "right": "boar_run_right",
+          "front": "boar_run_front"
+        },
+        "walk": {
+          "left": "boar_walk_left",
+          "right": "boar_walk_right",
+          "front": "boar_walk_front"
+        }
+      },
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "shadow": {
+        "key": "boar_shadow",
+        "path": "animals/boar/boar_shadow.png",
+        "frameWidth": 32,
+        "frameHeight": 16,
+        "frameCount": 9,
+        "notes": "Grid of ellipse shadows of varying widths; not labeled per animation."
+      }
+    },
+    "deer": {
+      "actions": {
+        "death": {
+          "left": "deer_death_left",
+          "right": "deer_death_right",
+          "front": "deer_death_front"
+        },
+        "hurt": {
+          "left": "deer_hurt_left",
+          "right": "deer_hurt_right",
+          "front": "deer_hurt_front"
+        },
+        "idle": {
+          "left": "deer_idle_left",
+          "right": "deer_idle_right",
+          "front": "deer_idle_front"
+        },
+        "run": {
+          "left": "deer_run_left",
+          "right": "deer_run_right",
+          "front": "deer_run_front"
+        },
+        "walk": {
+          "left": "deer_walk_left",
+          "right": "deer_walk_right",
+          "front": "deer_walk_front"
+        }
+      },
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "shadow": {
+        "key": "deer_shadow",
+        "path": "animals/deer/deer_shadow.png",
+        "frameWidth": 32,
+        "frameHeight": 16,
+        "frameCount": 9,
+        "notes": "Grid of ellipse shadows of varying widths; not labeled per animation."
+      }
+    },
+    "fox": {
+      "actions": {
+        "death": {
+          "left": "fox_death_left",
+          "right": "fox_death_right",
+          "front": "fox_death_front"
+        },
+        "hurt": {
+          "left": "fox_hurt_left",
+          "right": "fox_hurt_right",
+          "front": "fox_hurt_front"
+        },
+        "idle": {
+          "left": "fox_idle_left",
+          "right": "fox_idle_right",
+          "front": "fox_idle_front"
+        },
+        "run": {
+          "left": "fox_run_left",
+          "right": "fox_run_right",
+          "front": "fox_run_front"
+        },
+        "walk": {
+          "left": "fox_walk_left",
+          "right": "fox_walk_right",
+          "front": "fox_walk_front"
+        }
+      },
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "shadow": {
+        "key": "fox_shadow",
+        "path": "animals/fox/fox_shadow.png",
+        "frameWidth": 32,
+        "frameHeight": 16,
+        "frameCount": 4,
+        "notes": "Grid of ellipse shadows of varying widths; not labeled per animation."
+      }
+    },
+    "hare": {
+      "actions": {
+        "death": {
+          "left": "hare_death_left",
+          "right": "hare_death_right",
+          "front": "hare_death_front"
+        },
+        "hurt": {
+          "left": "hare_hurt_left",
+          "right": "hare_hurt_right",
+          "front": "hare_hurt_front"
+        },
+        "idle": {
+          "left": "hare_idle_left",
+          "right": "hare_idle_right",
+          "front": "hare_idle_front"
+        },
+        "run": {
+          "left": "hare_run_left",
+          "right": "hare_run_right",
+          "front": "hare_run_front"
+        },
+        "walk": {
+          "left": "hare_walk_left",
+          "right": "hare_walk_right",
+          "front": "hare_walk_front"
+        }
+      },
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "shadow": {
+        "key": "hare_shadow",
+        "path": "animals/hare/hare_shadow.png",
+        "frameWidth": 32,
+        "frameHeight": 16,
+        "frameCount": 9,
+        "notes": "Grid of ellipse shadows of varying widths; not labeled per animation."
+      }
+    }
+  }
+}
