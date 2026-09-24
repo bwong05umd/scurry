@@ -5,7 +5,15 @@ import type { Dir } from '../entities/movement';
 import { GAME_HEIGHT, GAME_WIDTH, GRAVITY_Y, LIGHTING, PLAYER, SCROLL_FACTOR_OVERRIDES } from '../config';
 import { brambleHollow } from '../levels/brambleHollow';
 import { charAt, DECOR_CHARS, type ParsedLevel, parseStage, TILE_SIZE } from '../levels/level';
-import { DEN_TEXTURE, FLOWER_TEXTURE, THICKET_TEXTURE, THICKET_TILES } from './placeholderArt';
+import {
+  createThicketTexture,
+  DEN_TEXTURE,
+  FLOWER_TEXTURE,
+  HEDGE_FIRST_FRAME,
+  THICKET_TEXTURE,
+  THICKET_TILES,
+} from './placeholderArt';
+import { PIXEL_FONT, PIXEL_FONT_LETTER_SPACING } from './pixelFont';
 
 interface ParallaxLayer {
   sprite: Phaser.GameObjects.TileSprite;
@@ -43,8 +51,8 @@ export class GameScene extends Phaser.Scene {
   private state: 'playing' | 'dead' | 'finished' = 'playing';
   private bestTime = Infinity;
 
-  private hud!: Phaser.GameObjects.Text;
-  private help!: Phaser.GameObjects.Text;
+  private hud!: Phaser.GameObjects.BitmapText;
+  private help!: Phaser.GameObjects.BitmapText;
   private cooldownBar!: Phaser.GameObjects.Graphics;
   private darkness!: Phaser.GameObjects.Rectangle;
 
@@ -100,6 +108,7 @@ export class GameScene extends Phaser.Scene {
     const empty = () => Array.from({ length: rows }, () => new Array<number>(cols).fill(-1));
     const terrainData = empty();
     const thicketData = empty();
+    const hedgeFrames = createThicketTexture(this, this.level);
     const is = (ch: string, col: number, row: number) => {
       if (row >= rows || col < 0 || col >= cols) return ch === '#'; // ground runs off the edges
       return charAt(this.level, col, row) === ch;
@@ -119,6 +128,8 @@ export class GameScene extends Phaser.Scene {
           terrainData[row][col] = BRANCH_TILE;
         } else if (ch === ':') {
           terrainData[row][col] = SOIL_TILE;
+        } else if (ch === 'H' || ch === 'K') {
+          thicketData[row][col] = hedgeFrames.get(`${col},${row}`)!;
         } else if (ch in THICKET_TILES) {
           thicketData[row][col] = THICKET_TILES[ch];
         }
@@ -142,7 +153,7 @@ export class GameScene extends Phaser.Scene {
     const thicketTiles = thicketMap.addTilesetImage(THICKET_TEXTURE, THICKET_TEXTURE, TILE_SIZE, TILE_SIZE)!;
     const thicket = thicketMap.createLayer(0, thicketTiles, 0, 0)!;
     // Hedges are walls; brambles and thorns are overlap-only hazards (see hazardsTouching).
-    thicket.setCollision([THICKET_TILES.H, THICKET_TILES.K]);
+    thicket.setCollisionBetween(HEDGE_FIRST_FRAME, HEDGE_FIRST_FRAME + hedgeFrames.size - 1);
     return { terrain, thicket };
   }
 
@@ -175,18 +186,16 @@ export class GameScene extends Phaser.Scene {
       .setAlpha(LIGHTING.startAlpha)
       .setDepth(10);
     this.hud = this.add
-      .text(4, 3, '', { fontFamily: 'monospace', fontSize: '8px', color: '#ffffff', lineSpacing: 1 })
-      .setStroke('#1b1424', 3)
+      .bitmapText(3, 2, PIXEL_FONT, '')
+      .setLetterSpacing(PIXEL_FONT_LETTER_SPACING)
       .setScrollFactor(0)
       .setDepth(20);
     this.help = this.add
-      .text(4, GAME_HEIGHT - 22, ['A/D move  W/Space jump  hold/2x-tap to sprint', 'J dash  K Scurry (air, +WASD)  R restart'], {
-        fontFamily: 'monospace',
-        fontSize: '8px',
-        color: '#ffffff',
-        lineSpacing: 1,
-      })
-      .setStroke('#1b1424', 3)
+      .bitmapText(3, GAME_HEIGHT - 23, PIXEL_FONT, [
+        'A/D move  W/Space jump  hold/2x-tap to sprint',
+        'J dash  K Scurry (air, +WASD)  R restart',
+      ])
+      .setLetterSpacing(PIXEL_FONT_LETTER_SPACING)
       .setScrollFactor(0)
       .setDepth(20);
     this.cooldownBar = this.add.graphics().setScrollFactor(0).setDepth(20);

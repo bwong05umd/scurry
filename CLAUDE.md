@@ -13,7 +13,7 @@
 - `assets/assets.json`: asset manifest (images, tileset, decor atlas, animal spritesheets and animations). Always load assets from it and never hardcode frame sizes.
 - `src/assets.ts`: typed view of the manifest.
 - `src/config.ts`: tunable constants. Native resolution is 320x192, scaled up with `pixelArt: true`.
-- `src/scenes/`: `BootScene` (loading, creating animations, decor frames), `GameScene` (builds the level, input, camera, hazards, timer/splits HUD), `placeholderArt.ts` (hedge, bramble, thorn, den and flower textures drawn in code until real art exists).
+- `src/scenes/`: `BootScene` (loading, creating animations, decor frames), `GameScene` (builds the level, input, camera, hazards, timer/splits HUD), `placeholderArt.ts` (bramble, thorn, den and flower textures drawn in code until real art exists), `hedgeArt.ts` (hedges painted per level: one frame per hedge cell, so leaf clumps, scalloped edges and depth shading flow across cells).
 - `src/entities/movement.ts`: acceleration-based movement, dash and Scurry as a pure step function (no Phaser), shared by the game and the level checker.
 - `src/entities/Player.ts`: the fox sprite; feeds `movement.ts` and picks animations.
 - `src/levels/level.ts`: ASCII level format and legend. `src/levels/brambleHollow.ts`: the fox stage, five 80x12 zones.

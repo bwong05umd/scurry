@@ -1,12 +1,17 @@
 import Phaser from 'phaser';
+import type { ParsedLevel } from '../levels/level';
+import { hedgeCells, hedgePainter } from './hedgeArt';
 
-// Placeholder art drawn at boot, until real hedge/hazard/den art exists. Colour language
+// Placeholder art drawn in code until real hedge/hazard/den art exists (hedges: hedgeArt.ts). Colour language
 // for route reading: hedges are green (dark and desaturated where they close in), soft
 // brambles are purple tangles, hard thorns are red spikes, the true route is yellow flowers.
 
 export const THICKET_TEXTURE = 'thicket';
-// Frame index in the thicket tileset for each level character.
-export const THICKET_TILES: Record<string, number> = { H: 0, K: 1, '~': 2, X: 3 };
+// Frame index in the thicket tileset for the hazard characters. Hedges follow, one frame per
+// hedge cell (see createThicketTexture).
+export const THICKET_TILES: Record<string, number> = { '~': 0, X: 1 };
+export const HEDGE_FIRST_FRAME = Object.keys(THICKET_TILES).length;
+const THICKET_COLUMNS = 64;
 export const DEN_TEXTURE = 'den';
 export const FLOWER_TEXTURE = 'flower';
 
@@ -23,21 +28,6 @@ function rng(seed: number) {
 function px(ctx: CanvasRenderingContext2D, color: string, x: number, y: number, w = 1, h = 1) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, w, h);
-}
-
-function drawHedge(ctx: CanvasRenderingContext2D, ox: number, colors: string[], seed: number) {
-  const [base, mid, light, dark] = colors;
-  const rand = rng(seed);
-  px(ctx, base, ox, 0, T, T);
-  // Leaf clusters: small blobs with a lit top-left pixel.
-  for (let i = 0; i < 14; i++) {
-    const x = Math.floor(rand() * 14);
-    const y = Math.floor(rand() * 14);
-    px(ctx, mid, ox + x, y, 3, 2);
-    px(ctx, mid, ox + x + 1, y + 2);
-    px(ctx, light, ox + x, y);
-  }
-  for (let i = 0; i < 10; i++) px(ctx, dark, ox + Math.floor(rand() * T), Math.floor(rand() * T));
 }
 
 function drawBramble(ctx: CanvasRenderingContext2D, ox: number) {
@@ -109,15 +99,39 @@ function drawFlower(scene: Phaser.Scene) {
 }
 
 export function createPlaceholderArt(scene: Phaser.Scene) {
-  const tiles = Object.keys(THICKET_TILES).length;
-  const tex = scene.textures.createCanvas(THICKET_TEXTURE, T * tiles, T)!;
-  const ctx = tex.getContext();
-  drawHedge(ctx, THICKET_TILES.H * T, ['#2c5a2c', '#3f7a38', '#7cc15a', '#1a3a1e'], 1);
-  drawHedge(ctx, THICKET_TILES.K * T, ['#172a22', '#233c2c', '#3c5a3c', '#0c1812'], 2);
-  drawBramble(ctx, THICKET_TILES['~'] * T);
-  drawThorns(ctx, THICKET_TILES.X * T);
-  tex.refresh();
-
   drawDen(scene);
   drawFlower(scene);
+}
+
+// Thicket tileset for a level: the hazard frames, then a unique frame per hedge cell.
+// Returns each hedge cell's frame index, keyed "col,row".
+export function createThicketTexture(scene: Phaser.Scene, level: ParsedLevel) {
+  const cells = hedgeCells(level);
+  const frames = new Map(cells.map(({ col, row }, i) => [`${col},${row}`, HEDGE_FIRST_FRAME + i]));
+  // Same level every restart, so the texture is only painted once.
+  if (scene.textures.exists(THICKET_TEXTURE)) return frames;
+
+  const count = HEDGE_FIRST_FRAME + cells.length;
+  const tex = scene.textures.createCanvas(
+    THICKET_TEXTURE,
+    T * THICKET_COLUMNS,
+    T * Math.ceil(count / THICKET_COLUMNS),
+  )!;
+  const ctx = tex.getContext();
+  const origin = (frame: number) => [(frame % THICKET_COLUMNS) * T, Math.floor(frame / THICKET_COLUMNS) * T];
+  drawBramble(ctx, THICKET_TILES['~'] * T); // hazard frames sit in the first row
+  drawThorns(ctx, THICKET_TILES.X * T);
+
+  const painter = hedgePainter(level);
+  cells.forEach(({ col, row }, i) => {
+    const [ox, oy] = origin(HEDGE_FIRST_FRAME + i);
+    for (let y = 0; y < T; y++) {
+      for (let x = 0; x < T; x++) {
+        const color = painter.pixel(col, row, x, y);
+        if (color) px(ctx, color, ox + x, oy + y);
+      }
+    }
+  });
+  tex.refresh();
+  return frames;
 }

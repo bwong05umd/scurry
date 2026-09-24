@@ -1,0 +1,9 @@
+{
+  // Node scripts (npm run check-level). Separate from the root config so src/ doesn't see Node globals.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "types": ["node"]
+  },
+  "include": ["."]
+}

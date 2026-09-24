@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import { decors, manifest } from '../assets';
 import { PLAYER_ANIMAL } from '../config';
 import { createPlaceholderArt } from './placeholderArt';
+import { createPixelFont } from './pixelFont';
 
 // Only the player's sheets are needed so far; other animals load when they're added.
 const spritesheets = manifest.spritesheets.filter((s) => s.animal === PLAYER_ANIMAL);
@@ -47,6 +48,7 @@ export class BootScene extends Phaser.Scene {
     }
 
     createPlaceholderArt(this);
+    createPixelFont(this);
     this.scene.start('GameScene');
   }
 }
