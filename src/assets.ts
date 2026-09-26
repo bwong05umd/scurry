@@ -77,5 +77,13 @@ export const manifest = manifestJson as unknown as Manifest;
 export const tileset = manifest.tilesets.find((t) => t.key === 'tileset')!;
 export const decors = manifest.atlases.find((a) => a.key === 'decors')!;
 
+// Wildflowers, bushes, stumps and logs, split over several sheets. Frame names are unique
+// across them, so a plant is looked up by frame name alone.
+export const floraAtlas = new Map<string, string>(
+  manifest.atlases
+    .filter((a) => a.key.startsWith('flora_'))
+    .flatMap((a) => Object.keys(a.frames).map((frame) => [frame, a.key] as const)),
+);
+
 // Background layers, far to near.
 export const backgroundLayers = [...manifest.images].sort((a, b) => a.layer - b.layer);

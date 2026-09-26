@@ -2,9 +2,10 @@ import Phaser from 'phaser';
 import type { ParsedLevel } from '../levels/level';
 import { hedgeCells, hedgePainter } from './hedgeArt';
 
-// Placeholder art drawn in code until real hedge/hazard/den art exists (hedges: hedgeArt.ts). Colour language
-// for route reading: hedges are green (dark and desaturated where they close in), soft
-// brambles are purple tangles, hard thorns are red spikes, the true route is yellow flowers.
+// Placeholder art drawn in code until real hazard/den art exists (walls: hedgeArt.ts). Colour language
+// for route reading: walls are mossy grey-green cobblestone (darker where they close in), soft
+// brambles are purple tangles, hard thorns are red spikes, the true route is yellow flowers
+// (daffodils from the flora art, see GameScene).
 
 export const THICKET_TEXTURE = 'thicket';
 // Frame index in the thicket tileset for the hazard characters. Hedges follow, one frame per
@@ -13,7 +14,6 @@ export const THICKET_TILES: Record<string, number> = { '~': 0, X: 1 };
 export const HEDGE_FIRST_FRAME = Object.keys(THICKET_TILES).length;
 const THICKET_COLUMNS = 64;
 export const DEN_TEXTURE = 'den';
-export const FLOWER_TEXTURE = 'flower';
 
 const T = 16;
 
@@ -84,23 +84,8 @@ function drawDen(scene: Phaser.Scene) {
   tex.refresh();
 }
 
-function drawFlower(scene: Phaser.Scene) {
-  const tex = scene.textures.createCanvas(FLOWER_TEXTURE, 8, 6)!;
-  const ctx = tex.getContext();
-  px(ctx, '#3f8a3a', 1, 3, 1, 3);
-  px(ctx, '#3f8a3a', 5, 2, 1, 4);
-  px(ctx, '#f5d442', 0, 2, 3, 1);
-  px(ctx, '#f5d442', 1, 1);
-  px(ctx, '#fff3a0', 1, 2);
-  px(ctx, '#f5d442', 4, 1, 3, 1);
-  px(ctx, '#f5d442', 5, 0);
-  px(ctx, '#fff3a0', 5, 1);
-  tex.refresh();
-}
-
 export function createPlaceholderArt(scene: Phaser.Scene) {
   drawDen(scene);
-  drawFlower(scene);
 }
 
 // Thicket tileset for a level: the hazard frames, then a unique frame per hedge cell.

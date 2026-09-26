@@ -62,6 +62,7 @@ What the repo already has versus what still needs to be made.
 - Decor: tree, bush, stone (only these three frames in `stage/Decors.png`)
 - Backgrounds: three parallax layers (BG1 sky is static, BG2 and BG3 scroll)
 - Fox animations: idle, walk, run, hurt, death, each in left/right/front, plus shadow variants
+- Flora (`stage/flora/`, 75 sprites): wildflowers, grasses, ferns, bushes, plus stumps, logs, lily pads and mossy stones. Scattered per zone from a palette (bright meadow to shade plants); yellow daffodils are the true-route marker
 
 **Still to make or source**
 
@@ -71,7 +72,7 @@ What the repo already has versus what still needs to be made.
 | Thorn wall (hard hazard, resets run) | 5 only | New art |
 | Hedge wall tiles + "closing in" variant | 1, 5 | New art; could start by tinting bush/tree decor |
 | Log / branch platforms | 3 | Could reuse grass-top ledge tiles as a stand-in |
-| Route-reading set (true-route markers, decoy branch tiles) | 4 | Consistent silhouette and color language |
+| Route-reading set (decoy branch tiles) | 4 | Consistent silhouette and color language. True-route markers are done (daffodils) |
 | Overhead canopy layer | 3 | Sells the high route |
 | Lighting shift, bright to dark across the stage | all | Cheap option: camera tint or overlay, no new art |
 | Dash trail, Scurry effect (dust puff / leaf swirl) | all | New art or particles |

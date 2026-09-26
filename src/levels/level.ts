@@ -5,12 +5,12 @@
 // Legend
 //   .  air                      #  ground (grass/dirt, auto-tiled)
 //   =  stone brick (ruins)      _  branch platform (one-tile ledge)
-//   H  hedge wall               K  hedge wall, closing in (darker, for the finale)
+//   H  stone wall (mossy cobble) K  stone wall, closing in (darker, for the finale)
 //   ~  bramble: soft hazard, slows the player
 //   X  thorns: hard hazard, restarts the run
 //   :  dark soil backdrop (not solid)
 //   T  tree   b  bush   s  stone   (decor, not solid, stands on the bottom of its cell)
-//   *  true-route marker (flowers), for route reading
+//   *  true-route marker (daffodils), for route reading
 //   @  start (player spawns here)   F  finish den
 
 export const LEVEL_ROWS = 12;
@@ -19,9 +19,17 @@ export const TILE_SIZE = 16;
 export const SOLID_CHARS = new Set(['#', '=', 'H', 'K', '_']);
 export const DECOR_CHARS: Record<string, 'tree' | 'bush' | 'stone'> = { T: 'tree', b: 'bush', s: 'stone' };
 
+// Wildflowers scattered on the zone's open ground (see src/scenes/flora.ts). `plants` are
+// frame names from the flora_* atlases in assets/assets.json.
+export interface FloraDef {
+  plants: string[];
+  density: number; // chance each free ground cell gets a plant, 0-1
+}
+
 export interface ZoneDef {
   name: string;
   rows: string[];
+  flora?: FloraDef;
 }
 
 export interface StageDef {
@@ -41,7 +49,7 @@ export interface ParsedLevel {
   grid: string[][]; // grid[row][col]
   spawn: Cell;
   finish: Cell;
-  zones: { name: string; startCol: number; endCol: number }[];
+  zones: { name: string; startCol: number; endCol: number; flora?: FloraDef }[];
 }
 
 export function parseStage(stage: StageDef): ParsedLevel {
@@ -57,7 +65,7 @@ export function parseStage(stage: StageDef): ParsedLevel {
     });
     const startCol = grid[0].length;
     zone.rows.forEach((row, i) => grid[i].push(...row));
-    zones.push({ name: zone.name, startCol, endCol: grid[0].length });
+    zones.push({ name: zone.name, startCol, endCol: grid[0].length, flora: zone.flora });
   }
 
   const find = (ch: string) => {

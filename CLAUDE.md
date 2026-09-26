@@ -10,10 +10,10 @@
 
 ## Layout
 - `assets/`: all art. Vite serves it as the web root (`publicDir`), so paths in `assets/assets.json` load unchanged.
-- `assets/assets.json`: asset manifest (images, tileset, decor atlas, animal spritesheets and animations). Always load assets from it and never hardcode frame sizes.
+- `assets/assets.json`: asset manifest (images, tileset, decor atlas, flora atlases, animal spritesheets and animations). Flora sheets live in `assets/stage/flora/` (5x3 grids of 32x32 cells, frames trimmed so their bottom edge is the ground line). Always load assets from it and never hardcode frame sizes.
 - `src/assets.ts`: typed view of the manifest.
 - `src/config.ts`: tunable constants. Native resolution is 320x192, scaled up with `pixelArt: true`.
-- `src/scenes/`: `BootScene` (loading, creating animations, decor frames), `GameScene` (builds the level, input, camera, hazards, timer/splits HUD), `placeholderArt.ts` (bramble, thorn, den and flower textures drawn in code until real art exists), `hedgeArt.ts` (hedges painted per level: one frame per hedge cell, so leaf clumps, scalloped edges and depth shading flow across cells).
+- `src/scenes/`: `BootScene` (loading, creating animations, decor frames), `GameScene` (builds the level, input, camera, hazards, timer/splits HUD), `placeholderArt.ts` (bramble, thorn and den textures drawn in code until real art exists), `flora.ts` (scatters wildflowers from each zone's flora palette on open ground), `hedgeArt.ts` (walls `H`/`K` painted per level as mossy cobblestone in the flora pack's stone_wall palette: one frame per wall cell, so stones, moss caps and depth shading flow across cells).
 - `src/entities/movement.ts`: acceleration-based movement, dash and Scurry as a pure step function (no Phaser), shared by the game and the level checker.
 - `src/entities/Player.ts`: the fox sprite; feeds `movement.ts` and picks animations.
 - `src/levels/level.ts`: ASCII level format and legend. `src/levels/brambleHollow.ts`: the fox stage, five 80x12 zones.
@@ -27,7 +27,7 @@ A/D move (hold a direction to build into a sprint, or double-tap it to sprint at
 - The player is the fox. Animals have separate left and right sheets, so turn the sprite by switching sheets, not by `flipX`.
 - `fox_run_left.png` and `fox_run_right.png` are swapped in the art pack. `ANIMATION_KEY_FIXES` in `src/config.ts` corrects this; check new animals' sheets the same way.
 - Jump, dash and Scurry presses come from key `down` events, not `isDown`/`JustDown`, so taps that start and end within one frame aren't lost.
-- Brambles (`~`) and thorns (`X`) are overlap-only: `GameScene.hazardsTouching()` reads the level grid under the player's body. Hedges (`H`, `K`) collide like ground.
+- Brambles (`~`) and thorns (`X`) are overlap-only: `GameScene.hazardsTouching()` reads the level grid under the player's body. Stone walls (`H`, `K`, still called hedges in the design docs) collide like ground.
 - Thorns restart the whole run (no checkpoints). Brambles halve max speed; dash ignores them.
 - The camera scrolls after `update()`, so parallax updates on the camera's `FOLLOW_UPDATE` event.
 
@@ -72,6 +72,8 @@ Fox stage is **Bramble Hollow**: @docs/design/fox-bramble-hollow.md
 - Animal sprites are a CraftPix pack (`assets/animals/LICENSE.txt` links to the CraftPix license). Do NOT add any feature that lets players export or extract the art, do NOT redistribute the raw source files, and do NOT use the art as AI/ML training data. Normal in-game rendering and animation is fine.
 - `assets/animals/*/source/` (PSD/Aseprite) is not loaded by the game; the manifest excludes it. Never reference it from code.
 - The origin of the stage art (`assets/stage/`) and its license are not recorded yet: TODO.
+- The origin and license of the flora sheets (`assets/stage/flora/`) are not recorded yet: TODO.
+- Flora palettes skip yellow (true-route daffodils), purple (brambles), red (thorns), and anything that reads as solid (stumps, logs, boulders, big dark bushes).
 - Hazard look: thorns and brambles, not generic spikes. Soft hazards slow the player; hard hazards reset the run and are reserved for the end of a stage.
 - Route-reading matters more than detail: safe path, hazard, and dead-end branch must be distinguishable by color and silhouette.
 

@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { decors, manifest } from '../assets';
+import { manifest } from '../assets';
 import { PLAYER_ANIMAL } from '../config';
 import { createPlaceholderArt } from './placeholderArt';
 import { createPixelFont } from './pixelFont';
@@ -20,7 +20,9 @@ export class BootScene extends Phaser.Scene {
     for (const set of manifest.tilesets) {
       this.load.image(set.key, set.path);
     }
-    this.load.image(decors.key, decors.path);
+    for (const atlas of manifest.atlases) {
+      this.load.image(atlas.key, atlas.path);
+    }
     for (const sheet of spritesheets) {
       this.load.spritesheet(sheet.key, sheet.path, {
         frameWidth: sheet.frameWidth,
@@ -41,10 +43,12 @@ export class BootScene extends Phaser.Scene {
       });
     }
 
-    // The decor sheet has an irregular layout; register its named frames from the manifest.
-    const decorTexture = this.textures.get(decors.key);
-    for (const [name, f] of Object.entries(decors.frames)) {
-      decorTexture.add(name, 0, f.x, f.y, f.w, f.h);
+    // Atlas sheets have irregular or trimmed layouts; register their named frames from the manifest.
+    for (const atlas of manifest.atlases) {
+      const texture = this.textures.get(atlas.key);
+      for (const [name, f] of Object.entries(atlas.frames)) {
+        texture.add(name, 0, f.x, f.y, f.w, f.h);
+      }
     }
 
     createPlaceholderArt(this);

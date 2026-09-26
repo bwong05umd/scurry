@@ -11,7 +11,8 @@
       "Load spritesheets with this.load.spritesheet(key, basePath+path, { frameWidth, frameHeight }).",
       "Every spritesheet has a pathWithShadow alternative (same frame size) baked with a drop shadow.",
       "Animation frameRate values are suggested defaults, not from the source files.",
-      "Directions: 'left'/'right' are side views, 'front' faces the camera."
+      "Directions: 'left'/'right' are side views, 'front' faces the camera.",
+      "Flora atlases (flora_*): wildflowers, bushes, stumps, logs and stones. Frame names are unique across all flora sheets."
     ]
   },
   "images": [
@@ -95,6 +96,501 @@
           "y": 92,
           "w": 27,
           "h": 20
+        }
+      }
+    },
+    {
+      "key": "flora_wildflowers",
+      "path": "stage/flora/wildflowers.png",
+      "width": 160,
+      "height": 96,
+      "notes": "Flora sheet: 5x3 grid of 32x32 cells. Frames are the cells trimmed to their opaque pixels, so a frame's bottom edge is where the plant meets the ground. Source and license not recorded yet.",
+      "frames": {
+        "daffodils": {
+          "x": 4,
+          "y": 8,
+          "w": 25,
+          "h": 24
+        },
+        "daffodils_2": {
+          "x": 35,
+          "y": 8,
+          "w": 25,
+          "h": 24
+        },
+        "lavender_grass": {
+          "x": 67,
+          "y": 6,
+          "w": 26,
+          "h": 26
+        },
+        "moss_mound": {
+          "x": 102,
+          "y": 16,
+          "w": 21,
+          "h": 16
+        },
+        "pitcher_plant": {
+          "x": 131,
+          "y": 1,
+          "w": 23,
+          "h": 31
+        },
+        "daisy": {
+          "x": 1,
+          "y": 44,
+          "w": 24,
+          "h": 20
+        },
+        "blue_berry_bush": {
+          "x": 34,
+          "y": 42,
+          "w": 27,
+          "h": 22
+        },
+        "cyan_flower_bush": {
+          "x": 65,
+          "y": 41,
+          "w": 27,
+          "h": 22
+        },
+        "magenta_heather": {
+          "x": 98,
+          "y": 39,
+          "w": 24,
+          "h": 25
+        },
+        "blue_heather": {
+          "x": 131,
+          "y": 39,
+          "w": 24,
+          "h": 25
+        },
+        "red_toadstools": {
+          "x": 1,
+          "y": 73,
+          "w": 29,
+          "h": 23
+        },
+        "pink_heather": {
+          "x": 38,
+          "y": 71,
+          "w": 24,
+          "h": 25
+        },
+        "white_blossoms_low": {
+          "x": 70,
+          "y": 80,
+          "w": 19,
+          "h": 16
+        },
+        "white_blossoms_tall": {
+          "x": 102,
+          "y": 72,
+          "w": 19,
+          "h": 24
+        },
+        "cream_heather": {
+          "x": 131,
+          "y": 70,
+          "w": 24,
+          "h": 25
+        }
+      }
+    },
+    {
+      "key": "flora_lilies_and_ferns",
+      "path": "stage/flora/lilies_and_ferns.png",
+      "width": 160,
+      "height": 96,
+      "notes": "Flora sheet: 5x3 grid of 32x32 cells. Frames are the cells trimmed to their opaque pixels, so a frame's bottom edge is where the plant meets the ground. Source and license not recorded yet.",
+      "frames": {
+        "peach_lilies": {
+          "x": 6,
+          "y": 6,
+          "w": 25,
+          "h": 24
+        },
+        "orange_lilies": {
+          "x": 37,
+          "y": 7,
+          "w": 25,
+          "h": 24
+        },
+        "orange_lilies_2": {
+          "x": 68,
+          "y": 6,
+          "w": 25,
+          "h": 24
+        },
+        "peach_lilies_2": {
+          "x": 99,
+          "y": 5,
+          "w": 25,
+          "h": 24
+        },
+        "big_leaf": {
+          "x": 130,
+          "y": 7,
+          "w": 28,
+          "h": 22
+        },
+        "big_leaf_lilac": {
+          "x": 3,
+          "y": 34,
+          "w": 28,
+          "h": 30
+        },
+        "fern": {
+          "x": 33,
+          "y": 35,
+          "w": 28,
+          "h": 24
+        },
+        "hanging_fern": {
+          "x": 66,
+          "y": 34,
+          "w": 28,
+          "h": 30
+        },
+        "potted_plants": {
+          "x": 99,
+          "y": 33,
+          "w": 27,
+          "h": 30
+        },
+        "lily_pads": {
+          "x": 132,
+          "y": 36,
+          "w": 26,
+          "h": 25
+        },
+        "lily_pads_2": {
+          "x": 3,
+          "y": 68,
+          "w": 26,
+          "h": 25
+        },
+        "lilac_shrub": {
+          "x": 35,
+          "y": 68,
+          "w": 26,
+          "h": 22
+        },
+        "stump_house": {
+          "x": 67,
+          "y": 66,
+          "w": 29,
+          "h": 25
+        },
+        "pale_leaves": {
+          "x": 96,
+          "y": 72,
+          "w": 21,
+          "h": 18
+        },
+        "lily_pad_flower": {
+          "x": 133,
+          "y": 68,
+          "w": 25,
+          "h": 19
+        }
+      }
+    },
+    {
+      "key": "flora_meadow",
+      "path": "stage/flora/meadow.png",
+      "width": 160,
+      "height": 96,
+      "notes": "Flora sheet: 5x3 grid of 32x32 cells. Frames are the cells trimmed to their opaque pixels, so a frame's bottom edge is where the plant meets the ground. Source and license not recorded yet.",
+      "frames": {
+        "yellow_grass": {
+          "x": 4,
+          "y": 10,
+          "w": 26,
+          "h": 22
+        },
+        "pink_sprout": {
+          "x": 39,
+          "y": 14,
+          "w": 19,
+          "h": 15
+        },
+        "queen_annes_lace": {
+          "x": 70,
+          "y": 4,
+          "w": 17,
+          "h": 28
+        },
+        "orange_berry_bush": {
+          "x": 98,
+          "y": 8,
+          "w": 27,
+          "h": 22
+        },
+        "pink_rose_bush": {
+          "x": 129,
+          "y": 7,
+          "w": 27,
+          "h": 22
+        },
+        "stump": {
+          "x": 6,
+          "y": 39,
+          "w": 22,
+          "h": 20
+        },
+        "mushroom_stump": {
+          "x": 39,
+          "y": 38,
+          "w": 22,
+          "h": 21
+        },
+        "mossy_boulder": {
+          "x": 64,
+          "y": 40,
+          "w": 32,
+          "h": 24
+        },
+        "weeping_fern": {
+          "x": 98,
+          "y": 35,
+          "w": 28,
+          "h": 29
+        },
+        "round_bush": {
+          "x": 131,
+          "y": 42,
+          "w": 27,
+          "h": 22
+        },
+        "mossy_skull": {
+          "x": 6,
+          "y": 68,
+          "w": 22,
+          "h": 25
+        },
+        "stump_hollow": {
+          "x": 34,
+          "y": 69,
+          "w": 30,
+          "h": 24
+        },
+        "yellow_broom": {
+          "x": 65,
+          "y": 66,
+          "w": 31,
+          "h": 30
+        },
+        "lupines": {
+          "x": 98,
+          "y": 64,
+          "w": 30,
+          "h": 32
+        },
+        "lupines_2": {
+          "x": 133,
+          "y": 65,
+          "w": 27,
+          "h": 31
+        }
+      }
+    },
+    {
+      "key": "flora_forest_floor",
+      "path": "stage/flora/forest_floor.png",
+      "width": 160,
+      "height": 96,
+      "notes": "Flora sheet: 5x3 grid of 32x32 cells. Frames are the cells trimmed to their opaque pixels, so a frame's bottom edge is where the plant meets the ground. Source and license not recorded yet.",
+      "frames": {
+        "mossy_stump_log": {
+          "x": 3,
+          "y": 5,
+          "w": 28,
+          "h": 22
+        },
+        "stone_wall": {
+          "x": 34,
+          "y": 0,
+          "w": 27,
+          "h": 32
+        },
+        "dark_shrub_white": {
+          "x": 67,
+          "y": 14,
+          "w": 25,
+          "h": 18
+        },
+        "dark_shrub_white_red": {
+          "x": 99,
+          "y": 13,
+          "w": 25,
+          "h": 18
+        },
+        "dark_shrub_red": {
+          "x": 131,
+          "y": 13,
+          "w": 25,
+          "h": 18
+        },
+        "mossy_stone_wall": {
+          "x": 1,
+          "y": 33,
+          "w": 29,
+          "h": 29
+        },
+        "stone_wall_2": {
+          "x": 34,
+          "y": 33,
+          "w": 27,
+          "h": 30
+        },
+        "grass_orange": {
+          "x": 69,
+          "y": 35,
+          "w": 21,
+          "h": 25
+        },
+        "grass": {
+          "x": 103,
+          "y": 36,
+          "w": 21,
+          "h": 23
+        },
+        "grass_orange_2": {
+          "x": 133,
+          "y": 37,
+          "w": 21,
+          "h": 23
+        },
+        "mossy_stone_wall_2": {
+          "x": 2,
+          "y": 64,
+          "w": 29,
+          "h": 29
+        },
+        "log_mushroom": {
+          "x": 38,
+          "y": 73,
+          "w": 19,
+          "h": 12
+        },
+        "mossy_log": {
+          "x": 71,
+          "y": 73,
+          "w": 19,
+          "h": 12
+        },
+        "dark_log_bush": {
+          "x": 96,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        },
+        "dark_log_bush_2": {
+          "x": 128,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        }
+      }
+    },
+    {
+      "key": "flora_bushes",
+      "path": "stage/flora/bushes.png",
+      "width": 160,
+      "height": 96,
+      "notes": "Flora sheet: 5x3 grid of 32x32 cells. Frames are the cells trimmed to their opaque pixels, so a frame's bottom edge is where the plant meets the ground. Source and license not recorded yet.",
+      "frames": {
+        "leafy_bush": {
+          "x": 0,
+          "y": 0,
+          "w": 32,
+          "h": 32
+        },
+        "leafy_bush_pink": {
+          "x": 32,
+          "y": 0,
+          "w": 32,
+          "h": 32
+        },
+        "leafy_bush_white": {
+          "x": 64,
+          "y": 0,
+          "w": 32,
+          "h": 32
+        },
+        "leafy_bush_pink_sparse": {
+          "x": 96,
+          "y": 0,
+          "w": 32,
+          "h": 32
+        },
+        "leafy_bush_white_sparse": {
+          "x": 128,
+          "y": 0,
+          "w": 32,
+          "h": 32
+        },
+        "leaf_scatter_white": {
+          "x": 4,
+          "y": 36,
+          "w": 23,
+          "h": 26
+        },
+        "leaf_scatter_pink": {
+          "x": 36,
+          "y": 35,
+          "w": 23,
+          "h": 26
+        },
+        "dark_bush": {
+          "x": 64,
+          "y": 32,
+          "w": 32,
+          "h": 32
+        },
+        "dark_bush_yellow": {
+          "x": 96,
+          "y": 32,
+          "w": 32,
+          "h": 32
+        },
+        "yellow_sprigs": {
+          "x": 132,
+          "y": 37,
+          "w": 23,
+          "h": 24
+        },
+        "shade_bush_orange_mushrooms": {
+          "x": 0,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        },
+        "shade_bush_orange_caps": {
+          "x": 32,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        },
+        "shade_bush_pink_mushrooms": {
+          "x": 64,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        },
+        "shade_bush_white_specks": {
+          "x": 96,
+          "y": 64,
+          "w": 32,
+          "h": 32
+        },
+        "shade_bush": {
+          "x": 128,
+          "y": 64,
+          "w": 32,
+          "h": 32
         }
       }
     }

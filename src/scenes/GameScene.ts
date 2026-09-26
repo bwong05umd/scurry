@@ -1,18 +1,12 @@
 import Phaser from 'phaser';
-import { backgroundLayers, decors, tileset } from '../assets';
+import { backgroundLayers, decors, floraAtlas, tileset } from '../assets';
 import { Player } from '../entities/Player';
 import type { Dir } from '../entities/movement';
 import { GAME_HEIGHT, GAME_WIDTH, GRAVITY_Y, LIGHTING, PLAYER, SCROLL_FACTOR_OVERRIDES } from '../config';
 import { brambleHollow } from '../levels/brambleHollow';
 import { charAt, DECOR_CHARS, type ParsedLevel, parseStage, TILE_SIZE } from '../levels/level';
-import {
-  createThicketTexture,
-  DEN_TEXTURE,
-  FLOWER_TEXTURE,
-  HEDGE_FIRST_FRAME,
-  THICKET_TEXTURE,
-  THICKET_TILES,
-} from './placeholderArt';
+import { createFlora } from './flora';
+import { createThicketTexture, DEN_TEXTURE, HEDGE_FIRST_FRAME, THICKET_TEXTURE, THICKET_TILES } from './placeholderArt';
 import { PIXEL_FONT, PIXEL_FONT_LETTER_SPACING } from './pixelFont';
 
 interface ParallaxLayer {
@@ -27,6 +21,9 @@ const GROUND_BLOCK = 0; // 3x3 grass-topped block at the top-left: corners, edge
 const STONE_BLOCK = 29; // 3x2 stone brick block
 const BRANCH_TILE = 21; // one-tile floating grass ledge
 const SOIL_TILE = 36; // dark soil, used as a backdrop
+
+// Flora frames for the true-route marker (*), alternated so a row of markers isn't uniform.
+const ROUTE_MARKERS = ['daffodils', 'daffodils_2'];
 
 const BEST_TIME_KEY = 'scurry.bestTime.brambleHollow';
 
@@ -82,6 +79,7 @@ export class GameScene extends Phaser.Scene {
 
     const { terrain, thicket } = this.createTilemap();
     this.createDecor();
+    createFlora(this, this.level);
 
     this.physics.world.setBounds(0, 0, worldWidth, GAME_HEIGHT);
     this.physics.world.gravity.y = GRAVITY_Y;
@@ -166,7 +164,10 @@ export class GameScene extends Phaser.Scene {
         const frame = DECOR_CHARS[ch];
         // Decor stands behind the player, feet on the bottom of its cell.
         if (frame) this.add.image(x, bottom, decors.key, frame).setOrigin(0.5, 1).setDepth(-1);
-        if (ch === '*') this.add.image(x, bottom, FLOWER_TEXTURE).setOrigin(0.5, 1).setDepth(-1);
+        if (ch === '*') {
+          const marker = ROUTE_MARKERS[col % ROUTE_MARKERS.length];
+          this.add.image(x, bottom, floraAtlas.get(marker)!, marker).setOrigin(0.5, 1).setDepth(-1);
+        }
       }),
     );
     for (const cell of [spawn, finish]) {
